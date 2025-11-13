@@ -8,10 +8,10 @@ services:
 
 ###> symfony/mailer ###
   mailer:
-    image: axllent/mailpit
+    image: yappabe/mailcatcher
     ports:
       - "1025"
-      - "8025"
+      - "1080:1080"
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1

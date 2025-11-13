@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreZero | Online Shop | Paper Bin</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <style>
+        body{
+            margin: 0px;
+            font-style: normal;
+            font-family: Arial;
+        }
+
+        #buyButton{
+            height: 75px;
+            width: 150px;
+            color: white;
+            background-color: green;
+            border-radius: 5px;
+            font-size: 20px;
+            transition: transform 0.2s ease-in-out;
+            will-change: transform;
+        }
+        #buyButton:hover{
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        #main{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            background-color: lightgray;
+        }
+        input{
+            display: block;
+            height: 30px;
+            width: 200px;
+        }
+        #bottom{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #purchase{
+            margin-left: 15px;
+        }
+        #adress{
+            margin-right: 15px;
+        }
+
+        #header{
+            font-size: 40px;
+            background-color: darkgreen;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "sans-serif";
+
+        }
+        img{
+            width: 600px;
+            height: 400px;
+        }
+        #content{
+            max-width: 400px;
+        }
+        h3{
+
+            font-size: 25px;
+        }
+        h4{
+            color: green;
+        }
+        label {
+            margin-bottom: 50px;
+        }
+
+    </style>
+    <script>
+        function calculateTotalAmount(){
+            const quantity = document.getElementById('quantity').value;
+            const totalAmount = quantity * 80
+            var changeTotalAmount = document.getElementById('totalAmount')
+            changeTotalAmount.textContent = "Total Amount: " +totalAmount +"€"
+        }
+        function zeigeInhalt() {
+
+            const wantedQuanity = document.getElementById('quantity').value;
+            const nameInput = document.getElementById('name').value;
+            const emailInput = document.getElementById('email').value;
+            const ignore = document.getElementById('totalAmount');
+            const totalAmount = ignore.textContent;
+            //
+            const street_name = document.getElementById('streetName').value;
+            const zip = document.getElementById('zip').value;
+            const city = document.getElementById('city').value;
+            const houseNumber = document.getElementById('houseNumber').value;
+            const country = document.getElementById('country').value;
+
+
+
+            alert(
+                "Your Purchase was executed!" +'\n'+ '\n'+
+                "Quantity: " + wantedQuanity + '\n' +
+                "Name: " + nameInput + '\n' +
+                "Email: " + emailInput + '\n' +
+                totalAmount +'\n' +'\n'+
+                "Your Adress: " + '\n'+
+                nameInput + '\n'+
+                street_name + " "+ houseNumber +'\n'+
+                city+ ", "+ zip +'\n'+
+                country)
+        }
+    </script>
+
+</head>
+<body>
+<div id="header">
+    <h1>PreZero Online-Shop</h1>
+</div>
+
+<div id="main">
+    <img src="https://www.zvo.com/files/images/3-entsorgung/blaue-tonne/blaue-tonne.png">
+    <div id="content">
+        <h3>Paper Bin (240L Volume & Eco-Efficiency)</h3>
+        <p>
+            Meet the definitive solution for your routine office and packaging waste: the 240-Liter Paper Bin.
+            This universally sized container is the ideal mid-to-high-volume champion for busy environments.
+            Its capacity is perfectly calibrated to handle a typical week's worth of newspapers, catalogues,
+            mail, and flattened cardboard from a medium-sized business or residential block. Designed for user
+            convenience and collection efficiency, the 240L size balances substantial holding power with easy maneuverability.
+            By choosing this dedicated receptacle, you ensure your paper materials remain dry and uncontaminated, maximizing their
+            recycling value and minimizing your operational costs. The 240L Paper Bin is more than just a container; it's a seamless,
+            professional step toward meeting your sustainability
+            goals and maintaining a clean, clutter-free workspace. Invest in reliable, high-efficiency recycling today.
+        </p>
+        <h4>80€</h4>
+    </div>
+
+</div>
+
+
+<div id="bottom">
+    <div id="adress">
+        <input id="streetName" type="text" placeholder="Street Name"><br>
+        <input id="houseNumber" type="number" min="0" placeholder="House Number"><br>
+        <input id="zip" type="number" min="0" placeholder="ZIP"><br>
+        <input id="city" type="text" placeholder="City"><br>
+        <input id="country" type="text" placeholder="Country"><br>
+    </div>
+    <div id="purchase">
+        <input id="quantity" min="0" onchange="calculateTotalAmount()" type="number" placeholder="Quantity"><br>
+        <input id="name" type="text" placeholder="Name"><br>
+        <input id="email" type="email" placeholder="Email"><br>
+        <label id="totalAmount">Total Amount: 0€</label>
+        <input id="buyButton" type="submit" onclick="zeigeInhalt()" value="Buy"><br>
+
+    </div>
+</div>
+</body>
+</html>

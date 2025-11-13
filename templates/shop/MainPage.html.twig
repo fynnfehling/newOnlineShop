@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreZero | Online Shop</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+    <style>
+        body{
+            margin: 0px;
+            font-style: normal;
+            font-family: Arial;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+            transition: transform 0.2s ease-in-out;
+            will-change: transform;
+        }
+        a:hover{
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        #main{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+
+        #header{
+            font-size: 40px;
+            background-color: forestgreen;
+            color: white;
+            font-family: "sans-serif";
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        #logo{
+            margin-left: auto;
+        }
+        #ignore{
+            flex: 1;
+            visibility: hidden;
+        }
+        h1{
+
+        }
+        img{
+            width: 300px;
+            height: 200px;
+        }
+        .produkt{
+
+
+            background-color: forestgreen;
+            padding: 20px;
+            margin-top: 50px;
+            margin-left: 50px;
+            max-width: 300px;
+            border-radius: 15px;
+
+        }
+        #produkte{
+            font-size: 20px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(2,auto);
+
+        }
+        h2{
+            text-align: center;
+            font-style: italic;
+            font-size: 30px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="header">
+
+    <h1>Online Shop</h1>
+    <img id="logo" src="https://upload.wikimedia.org/wikipedia/de/d/db/Prezero_logo.svg">
+
+</div>
+
+<h2>Choose your Product</h2>
+<div id="main">
+
+
+    <div id="produkte">
+
+        <a href="http://localhost:8000/paper" target="_blank">
+            <div class="produkt">
+                <img src="https://www.zvo.com/files/images/3-entsorgung/blaue-tonne/blaue-tonne.png">
+                <h3>Paper Bin (100L)</h3>
+                <p>
+                    The 100L Paper Bin is ideal for clean, high-quality recycling in small offices. Its manageable size ensures frequent emptying, preserving material quality. Perfect for documents and light cardboard. Efficient and essential.
+                </p>
+                <h4>80€</h4>
+            </div>
+        </a>
+
+        <a href="http://localhost:8000/bio" target="_blank">
+            <div class="produkt">
+                <img src="https://forum.iobroker.net/assets/uploads/files/1572980511251-biotonne.png">
+                <h3>Bio Bin (100L)</h3>
+                <p>
+                    The 100L Bio Bin offers hygienic, controlled collection of food and garden waste. Its size prevents heavy odours and is easy to handle, ensuring clean composting and minimizing landfill use. Clean and proportional.
+                </p>
+                <h4>125€</h4>
+            </div></a>
+
+        <a href="http://localhost:8000/special" target="_blank">
+            <div class="produkt">
+                <img src="https://greitertransporte.de/wp-content/uploads/2025/04/Sonderabfall.webp">
+                <h3>Special Waste Bin (>240L)</h3>
+                <p>
+                    The High-Capacity Special Waste Bin (>240L) is a robust safety fortress for bulk hazardous materials (chemicals, oils). Its size and secure sealing ensure compliant, centralized storage between specialist collections. Safe, large-scale compliance.
+                </p>
+                <h4>200€</h4>
+            </div></a>
+
+
+
+
+
+    </div>
+</div>
+<div id="bottom"></div>
+
+
+</body>
+</html>

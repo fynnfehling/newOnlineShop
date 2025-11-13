@@ -3,3 +3,15 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+bioWaste_page:
+    path: /bio
+    controller: App\Controller\BioController::index
+
+paperWaste_page:
+    path: /paper
+    controller: App\Controller\PaperController::index
+
+specialWaste_page:
+    path: /special
+    controller: App\Controller\SpecialController::index
