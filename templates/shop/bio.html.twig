@@ -14,17 +14,17 @@
             font-family: Arial;
         }
 
-        #buyButton{
+        .buyButton{
             height: 75px;
             width: 150px;
             color: white;
-            background-color: green;
+            background-color: #265D68;
             border-radius: 5px;
             font-size: 20px;
             transition: transform 0.2s ease-in-out;
             will-change: transform;
         }
-        #buyButton:hover{
+        .buyButton:hover{
             transform: scale(1.1);
             z-index: 10;
         }
@@ -56,7 +56,7 @@
 
         #header{
             font-size: 40px;
-            background-color: darkgreen;
+            background-color: #265D68;
             color: white;
             display: flex;
             align-items: center;
@@ -84,15 +84,56 @@
 
     </style>
     <script>
+        function collectOrderData() {
+            return {
+                quantity: parseInt(document.getElementById('quantity').value) || 0,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                totalAmount: document.getElementById('totalAmount').textContent,
+                // Adressdaten
+                streetName: document.getElementById('streetName').value,
+                houseNumber: document.getElementById('houseNumber').value,
+                zip: document.getElementById('zip').value,
+                city: document.getElementById('city').value,
+                country: document.getElementById('country').value
+            };
+        }
+
+        function processPurchase() {
+            const orderData = collectOrderData();
+
+            // Sende die Daten an den Symfony-Endpoint
+            fetch('/api/order/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert("Vielen Dank! Ihre Bestellung wurde erfolgreich ausgeführt und die E-Mail ist unterwegs.");
+                        // Hier würdest du üblicherweise zur Bestätigungsseite weiterleiten
+                    } else {
+                        alert("Bestellung konnte nicht verarbeitet werden: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Submission Error:', error);
+                    alert("Es gab ein Problem mit der Server-Verbindung.");
+                });
+        }
+
         function calculateTotalAmount(){
             const quantity = document.getElementById('quantity').value;
             const totalAmount = quantity * 125
             var changeTotalAmount = document.getElementById('totalAmount')
-            changeTotalAmount.textContent = "Total Amount: " +totalAmount +"€"
+            changeTotalAmount.textContent = totalAmount +"€"
         }
         function sendEmail(){
             alert("Email wurde gesendet")
-
+            document.URL("localhost:8000/test-mail")
         }
         function zeigeInhalt() {
 
@@ -151,22 +192,26 @@
 
 
 <div id="bottom">
-    <div id="adress">
-        <input id="streetName" type="text" placeholder="Street Name"><br>
-        <input id="houseNumber" type="number" min="0" placeholder="House Number"><br>
-        <input id="zip" type="number" min="0" placeholder="ZIP"><br>
-        <input id="city" type="text" placeholder="City"><br>
-        <input id="country" type="text" placeholder="Country"><br>
-    </div>
-    <div id="purchase">
-        <input id="quantity" min="0" onchange="calculateTotalAmount()" type="number" placeholder="Quantity"><br>
-        <input id="name" type="text" placeholder="Name"><br>
-        <input id="email" type="email" placeholder="Email"><br>
-        <label id="totalAmount">Total Amount: 0€</label>
-        <input id="buyButton" type="submit" onclick="zeigeInhalt(); sendEmail()" value="Buy"><br>
-       <a target="_blank" href ="http://localhost:8000/test-mail">Hier klicken bittschön</a>
 
-    </div>
+        <div id="adress">
+            <input id="streetName" type="text" placeholder="Street Name"><br>
+            <input id="houseNumber" type="number" min="0" placeholder="House Number"><br>
+            <input id="zip" type="number" min="0" placeholder="ZIP"><br>
+            <input id="city" type="text" placeholder="City"><br>
+            <input id="country" type="text" placeholder="Country"><br>
+        </div>
+        <div id="purchase">
+            <input id="quantity" min="0" onchange="calculateTotalAmount()" type="number" placeholder="Quantity"><br>
+            <input id="name" type="text" placeholder="Name"><br>
+            <input id="email" type="email" placeholder="Email"><br>
+            <label>Total Amount:</label>
+            <label id="totalAmount">0€</label>
+          <!--  <input class="buyButton" type="submit" onclick="zeigeInhalt(); sendEmail()" value="Buy"><br> -->
+            <input class="buyButton" type="submit" onclick="processPurchase()" value="Buy (new)"><br>
+
+        </div>
+
+
 </div>
 </body>
 </html>

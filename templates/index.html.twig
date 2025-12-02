@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>LP Lyric sender</title>
+    <style>
+
+    </style>
+  <script>
+      function collectdata(){
+          return{
+              name: document.getElementById('name').value,
+              email: document.getElementById('email').value
+          };
+
+      }
+      document.addEventListener('DOMContentLoaded', ()=> {
+          const form = document.getElementById('lyricForm');
+          form.addEventListener('submit',function (event){
+              event.preventDefault();
+
+           const data = collectdata();
+          fetch('/lyrics', {
+              method: 'POST',
+              headers:{
+                  'Content-Type':'application/json',
+              },
+              body: JSON.stringify(data)
+          })
+              .then(response => response.json())
+              .then(data =>{
+                  if (data.status==='success'){
+                      alert("Lyrics wurden gesendet!");
+                  }
+                  else {
+                      alert("Fehler: "+ data.message);
+                  }
+              })
+              .catch(error =>{
+                  console.error(error);
+                  alert("ERROR 404")
+              })
+
+
+          })
+      })
+  </script>
+</head>
+<body>
+<main>
+    <fieldset>
+        <legend>LP Lyrics per EMAIL gesendet bekommen</legend>
+        <form id="lyricForm" method="POST">
+            <input id="name" type="text" required placeholder="Name">
+            <input id="email" type="email" required placeholder="beispiel@email.com">
+            <button type="submit">Lyrics anfordern</button>
+        </form>
+    </fieldset>
+</main>
+
+</body>
+</html>

@@ -21,7 +21,7 @@ class TestMailController extends AbstractController
             ->to('fynnfehling@gmail.com')
             ->subject('Deine erste simple Test-Mail')
             ->text('Hallo! Dies ist der einfache Textinhalt deiner E-Mail.')
-            ->html('<p>Hallo! Dies ist der **HTML-Inhalt** deiner E-Mail.</p>');
+            ->html('<p>Hallo....</p>');
         $mailer->send($email);
         return new Response('Simple E-Mail erfolgreich gesendet yes sirsky!');
     }
